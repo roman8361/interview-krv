@@ -19,6 +19,7 @@
 
 ### JVM
 + [За что отвечает JVM](jvm.md#За-что-отвечает-JVM)
++ [Что такое Heap и Stack память в Java?](jvm.md#Что такое Heap и Stack память в Java?)
 + [Classloader](jvm.md#Classloader)
 + [Области данных времени выполнения](jvm.md#Области-данных-времени-выполнения)
 + [Frames](jvm.md#Frames)

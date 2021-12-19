@@ -1,7 +1,7 @@
 ## Вопросы для собеседования на Java Developer
 
-+ [ООП](#ООП) ![icon](done.png)
-+ [JVM](#jvm) ![icon](done.png)
++ [ООП](#ООП) ![icon](resources/done.png)
++ [JVM](#jvm) ![icon](resources/done.png)
 
 ### ООП
 + [Что такое _ООП_?](oop.md#Что-такое-ООП)
@@ -19,7 +19,8 @@
 
 ### JVM
 + [За что отвечает JVM](jvm.md#За-что-отвечает-JVM)
-+ [Что такое Heap и Stack память в Java?](jvm.md#Что такое Heap и Stack память в Java?)
++ [Что такое Heap Stack память в Java](jvm.md#Что-такое-Heap-и-Stack-память-в-Java?)
++ [Разница между Stack и Heap памятью в Java ](jvm.md#Разница-между-Stack-и-Heap-памятью-в-Java)
 + [Classloader](jvm.md#Classloader)
 + [Области данных времени выполнения](jvm.md#Области-данных-времени-выполнения)
 + [Frames](jvm.md#Frames)

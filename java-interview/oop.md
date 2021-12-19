@@ -247,17 +247,23 @@ public class VideoPhone extends AbstractPhone {
 Создадим объекты в методе main() и протестируем метод callAnotherUser:
 
 ```java
-AbstractPhone firstPhone = new ThomasEdisonPhone(1879);
-AbstractPhone phone = new Phone(1984);
-AbstractPhone videoPhone=new VideoPhone(2018);
-User user = new User("Андрей");
-user.callAnotherUser(224466,firstPhone);
-// Вращайте ручку
-//Сообщите номер абонента, сэр
-user.callAnotherUser(224466,phone);
-//Вызываю номер 224466
-user.callAnotherUser(224466,videoPhone);
-//Подключаю видеоканал для абонента 224466
+public class App {
+
+  public static void main(String[] args) {
+    AbstractPhone firstPhone = new ThomasEdisonPhone(1879);
+    AbstractPhone phone = new Phone(1984);
+    AbstractPhone videoPhone = new VideoPhone(2018);
+    User user = new User("Андрей");
+    user.callAnotherUser(224466, firstPhone);
+    // Вращайте ручку
+    //Сообщите номер абонента, сэр
+    user.callAnotherUser(224466,phone);
+    //Вызываю номер 224466
+    user.callAnotherUser(224466,videoPhone);
+    //Подключаю видеоканал для абонента 224466
+  }
+  
+}
 ```
 
 Используя вызов одного и того же метода объекта user, мы получили различные результаты. Выбор конкретной реализации метода call внутри метода callAnotherUser производился динамически на основании конкретного типа вызывающего его объекта в процессе выполнения программы. В этом и заключается основное преимущество полиморфизма – выбор реализации в процессе выполнения программы.

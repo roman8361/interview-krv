@@ -1,6 +1,6 @@
 ## Вопросы для собеседования на Java Developer
 
-+ [ООП, SOLID](#ООП)
++ [ООП, SOLID](#ООП)![icon](resources/done.png)
 + [JVM](#jvm) ![icon](resources/done.png)
 + [Java Core]()
 + [Java Collections]()

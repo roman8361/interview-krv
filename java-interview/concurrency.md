@@ -4,10 +4,10 @@
 + [Расскажите о модели памяти Java?](cuncurrency.md#Расскажите-о-модели-памяти-java)
 + [Что такое «потокобезопасность»?](#Что-такое-потокобезопасность)
 + [В чём разница между _«конкуренцией»_ и _«параллелизмом»_?](#В-чём-разница-между-конкуренцией-и-параллелизмом)
-+ [Concurrency/Parallelism/Asynchronous/Synchronous](#Concurrency/Parallelism/Asynchronous/Synchronous)
++ [Concurrency/Parallelism/Asynchronous/Synchronous](#Concurrency-Parallelism-Asynchronous-Synchronous)
 + [volatile](#volatile)
-+ [монитор/synchronized-block](#монитор/synchronized-block)  
-+ [data race/synchronized](#data-race/synchronized)  
++ [монитор/synchronized-block](#монитор-synchronized-block)  
++ [data race/synchronized](#data-race-synchronized)  
 + [Что такое _«кооперативная многозадачность»_? Какой тип многозадачности использует Java? Чем обусловлен этот выбор?](#Что-такое-кооперативная-многозадачность-Какой-тип-многозадачности-использует-java-Чем-обусловлен-этот-выбор)
 + [Что такое _ordering_, _as-if-serial semantics_, _sequential consistency_, _visibility_, _atomicity_, _happens-before_, _mutual exclusion_, _safe publication_?](#Что-такое-ordering-as-if-serial-semantics-sequential-consistency-visibility-atomicity-happens-before-mutual-exclusion-safe-publication)
 + [Чем отличается процесс от потока?](#Чем-отличается-процесс-от-потока)
@@ -139,7 +139,7 @@ _Reordering (переупорядочивание)_. Для увеличения
 
 [к оглавлению](#Многопоточность)
 
-## Concurrency/Parallelism/Asynchronous/Synchronous
+## Concurrency Parallelism Asynchronous Synchronous
 
 + __Concurrency__ - означает выполнение сразу несколькиз задач. В зависимости от процессора компьютера concurrency может достигаться разными способами.
 + __Parallelism__ - означает выполнение 2х и более задач в одно и тоже время, т.е. параллельно. В компьютерах с многоядерными процессарами Concurrency может достигаться за счёт Parallelism
@@ -147,6 +147,7 @@ _Reordering (переупорядочивание)_. Для увеличения
 + __Synchronous__ - задачи выполняются последовательно друг за другом
 
 [к оглавлению](#Многопоточность)
+
 ## volatile
 
 + __volatile__ -- ключевое слово volatile используется для пометки переменной, как хранящейся только 
@@ -182,7 +183,7 @@ public class VolatileEx extends Thread {
 ```
 [к оглавлению](#Многопоточность)
 
-## data race/synchronized
+## data race synchronized
 __data race__ - это проблема, которая может возникнуть когда два и боле потоком обращаются к одной и тоже переменной и как минимум 1 поток её изменяет.
 
 ```java
@@ -264,7 +265,7 @@ class MyRunnableImpl1 implements Runnable{
 
 [к оглавлению](#Многопоточность)
 
-## монитор/synchronized-block
+## монитор synchronized block
 + __Монитор__ - это сущность/механизм благодаря которому достигается корректная работа при синхронизации работы с ресурсом. В Java у каждого класса и объекта привязанный есть привязанный к нему монитор.
 
 __Преимущество синхронизированного блока в том, что можно только часть метода синхронизировать.__ 

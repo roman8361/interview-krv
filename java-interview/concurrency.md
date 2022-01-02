@@ -4,6 +4,10 @@
 + [Расскажите о модели памяти Java?](cuncurrency.md#Расскажите-о-модели-памяти-java)
 + [Что такое «потокобезопасность»?](#Что-такое-потокобезопасность)
 + [В чём разница между _«конкуренцией»_ и _«параллелизмом»_?](#В-чём-разница-между-конкуренцией-и-параллелизмом)
++ [Concurrency/Parallelism/Asynchronous/Synchronous](#Concurrency/Parallelism/Asynchronous/Synchronous)
++ [volatile](#volatile)
++ [монитор/synchronized-block](#монитор/synchronized-block)  
++ [data race/synchronized](#data-race/synchronized)  
 + [Что такое _«кооперативная многозадачность»_? Какой тип многозадачности использует Java? Чем обусловлен этот выбор?](#Что-такое-кооперативная-многозадачность-Какой-тип-многозадачности-использует-java-Чем-обусловлен-этот-выбор)
 + [Что такое _ordering_, _as-if-serial semantics_, _sequential consistency_, _visibility_, _atomicity_, _happens-before_, _mutual exclusion_, _safe publication_?](#Что-такое-ordering-as-if-serial-semantics-sequential-consistency-visibility-atomicity-happens-before-mutual-exclusion-safe-publication)
 + [Чем отличается процесс от потока?](#Чем-отличается-процесс-от-потока)
@@ -132,6 +136,197 @@ _Reordering (переупорядочивание)_. Для увеличения
 
 + Необязательно имеет несколько потоков управления
 + Может приводить к детерминированному результату, так, например, результат умножения каждого элемента массива на число, не изменится, если умножать его по частям параллельно.
+
+[к оглавлению](#Многопоточность)
+
+## Concurrency/Parallelism/Asynchronous/Synchronous
+
++ __Concurrency__ - означает выполнение сразу несколькиз задач. В зависимости от процессора компьютера concurrency может достигаться разными способами.
++ __Parallelism__ - означает выполнение 2х и более задач в одно и тоже время, т.е. параллельно. В компьютерах с многоядерными процессарами Concurrency может достигаться за счёт Parallelism
++ __Asynchronous__ - в асинхронном программировании каждая следующая задача не ждёт окончания предыдущей.
++ __Synchronous__ - задачи выполняются последовательно друг за другом
+
+[к оглавлению](#Многопоточность)
+## volatile
+
++ __volatile__ -- ключевое слово volatile используется для пометки переменной, как хранящейся только 
+  в основной памяти "main memory". Для синхронизации значения переменной между потоками ключевое слово volatile используется
+  тогда, когда один поток может изменять значение этой переменной, а остальные потоки могут его только читать.
+  
+```java
+public class VolatileEx extends Thread {
+
+    volatile boolean b = true; // volatile переменная будет храниться только в основной памяти main memory
+    // для синхронизации значения переменной между потоками ключевое слово volatile используется тогда,
+    // когда только один потом может изменять значение этой переменной, а остальные потоки могут его только читать
+
+    public void run(){
+        long counter = 0;
+        while (b) {
+            counter++;
+        }
+        System.out.println("Loop is finished. counter = " + counter);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        VolatileEx thread = new VolatileEx();
+        thread.start();
+        Thread.sleep(3000);
+        System.out.println("After 3 second it is time to wake up");
+        thread.b = false;
+        thread.join();
+        System.out.println("Programm end");
+    }
+}
+
+```
+[к оглавлению](#Многопоточность)
+
+## data race/synchronized
+__data race__ - это проблема, которая может возникнуть когда два и боле потоком обращаются к одной и тоже переменной и как минимум 1 поток её изменяет.
+
+```java
+/**
+ * synchronized
+ */
+public class Ex09 {
+
+    static int counter = 0;
+
+    static synchronized void increment() { // synchronized позволяет только одному потоку выполнить инкремент,
+        // другие потоки ждут пока выйдет вошедший
+        counter++;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread1 = new Thread(new MyRunnable());
+        Thread thread2 = new Thread(new MyRunnable());
+        thread1.start();
+        thread2.start();
+        thread1.join();
+        thread2.join();
+        System.out.println(counter);
+    }
+
+}
+
+class MyRunnable implements Runnable {
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 1000; i++) {
+            Ex09.increment();
+        }
+    }
+
+}
+
+```
+
+```java
+
+public class Ex08 {
+
+    public static void main(String[] args) {
+        MyRunnableImpl1 runnable = new MyRunnableImpl1();
+        Thread thread1 = new Thread(runnable);
+        Thread thread2= new Thread(runnable);
+        Thread thread3 = new Thread(runnable);
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+    }
+}
+
+class Counter {
+    volatile static int count = 0;
+}
+
+class MyRunnableImpl1 implements Runnable{
+
+    // synchronized позволяет только одному потоку выполнить инкремент,
+    // другие потоки ждут пока выйдет вошедший
+    public synchronized void increment(){
+        Counter.count++;
+        System.out.print(Counter.count + " ");
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 3; i++) {
+            increment();
+        }
+    }
+
+}
+```
+
+[к оглавлению](#Многопоточность)
+
+## монитор/synchronized-block
++ __Монитор__ - это сущность/механизм благодаря которому достигается корректная работа при синхронизации работы с ресурсом. В Java у каждого класса и объекта привязанный есть привязанный к нему монитор.
+
+__Преимущество синхронизированного блока в том, что можно только часть метода синхронизировать.__ 
+
+```java
+/**
+ * Класс пример использования synchronized блока.
+ * Монитор - это сущность/механизм благодаря которому достигается корректная работа при
+ * синхронизации работы с ресурсом. В Java у каждого класса и объекта привязанный есть привязанный к нему монитор.
+ */
+
+public class Ex10 {
+
+    public static void main(String[] args) throws InterruptedException {
+//        MyRunClass myRunClass = new MyRunClass();
+        Thread thread1 = new Thread(new MyRunClass());
+        Thread thread2 = new Thread(new MyRunClass());
+        Thread thread3 = new Thread(new MyRunClass());
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+
+        thread1.join();
+        thread2.join();
+        thread3.join();
+
+        System.out.println("Program was stop!");
+    }
+
+}
+
+class Counter {
+    static int count = 0;
+}
+
+class MyRunClass implements Runnable {
+
+    private void anyPrint(){
+        System.out.println("TROLOLO");
+    }
+
+    private void doWork() {
+        anyPrint();
+//        synchronized (this) {  // блок синхронизированного когда с монитором на этот объект
+        synchronized (Counter.class) {  // блок синхронизированного когда с монитором на Counter.class
+            Counter.count++;
+            System.out.println(Counter.count + " ");
+        }
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 3; i++) {
+            doWork();
+        }
+    }
+
+}
+
+```
+
 
 [к оглавлению](#Многопоточность)
 

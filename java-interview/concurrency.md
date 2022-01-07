@@ -278,6 +278,15 @@ __Преимущество синхронизированного блока в 
  */
 
 public class Ex10 {
+    
+    static final Object lock = new Object();
+    
+    public void abc(){
+        // та часть кода, которую можно не синхронизировать
+        synchronized (lock) {
+            // та часть метода которую надо синхронизировать по монитору
+        }
+    }
 
     public static void main(String[] args) throws InterruptedException {
 //        MyRunClass myRunClass = new MyRunClass();

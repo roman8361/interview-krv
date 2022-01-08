@@ -4,7 +4,7 @@
 + [Входит ли число в список(бинарный поиск)](algorithms.md#binarySearch)
 
 
-## binarySearch
+## [sssss](binarySearch)
 
 ```java
     @Test

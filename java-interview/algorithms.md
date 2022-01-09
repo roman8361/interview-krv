@@ -6,9 +6,16 @@
 + [Числа Фибоначчи](algorithms.md#Числа-Фибоначчи)
 + [Факториал числа](algorithms.md#Факториал-числа)
 + [Вывести числа рекурсией](algorithms.md#Вывести-числа-рекурсией)
-+ [Сколько гласных и согласных букв](Сколько-гласных-и-согласных-букв)
++ [Сколько гласных и согласных букв](algorithms.md#Сколько-гласных-и-согласных-букв)
 + [Палиндром](algorithms.md#Палиндром)
 + [Интегрированная шкала налогов](algorithms.md#Интегрированная-шкала-налогов)
++ [Удаляет дубли из массива заменяет их нулями](algorithms.md#Удаляет-дубли-из-массива-заменяет-их-нулями)
++ [Максимальное и минимальное значение в массиве](algorithms.md#Максимальное-и-минимальное-значение-в-массиве)
++ [Как найти все пары в массиве целых чисел сумма которых равна заданному числу](algorithms.md#Как-найти-все-пары-в-массиве-целых-чисел-сумма-которых-равна-заданному-числу)
++ [Выводит дубли букв](algorithms.md#Выводит-дубли-букв)
++ [Перевернуть строку](algorithms.md#Перевернуть-строку)
++ [Простая сортировка пузырьком](algorithms.md#Простая-сортировка-пузырьком)
++ [Вычисление квадрата минимального если не получается целое число](algorithms.md#Вычисление-квадрата-минимального-если-не-получается-целое-число)
 
 ## Входит ли число в список
 
@@ -43,7 +50,7 @@
 ```
 [к оглавлению](#Алгоритмы)
 
-## Сортировка-коллекции
+## Сортировка коллекции
 ```java
   @Test
     public void selectionsSortTest() {
@@ -73,12 +80,8 @@
         }
         return smallest;
     }
-
-
 ```
-
 [к оглавлению](#Алгоритмы)
-
 
 ## Числа Фибоначчи
 
@@ -182,9 +185,7 @@
             return IntStream.rangeClosed(2, f).reduce((x, y) -> x * y).getAsInt();
             }
         }
-
 ```
-
 [к оглавлению](#Алгоритмы)
 
 ## Вывести числа рекурсией
@@ -200,9 +201,7 @@
         simpleRecurs(num);
     }
 ```
-
 [к оглавлению](#Алгоритмы)
-
 
 ## Сколько гласных и согласных букв
 ```java
@@ -233,7 +232,6 @@
         System.out.println("Согласных - " + countConsonants);
     }
 ```
-
 [к оглавлению](#Алгоритмы)
 
 ## Палиндром
@@ -283,7 +281,6 @@
         String san = s.replaceAll("[^A-Za-z0-9]", "");
         System.out.println(new StringBuilder(san).reverse().toString().equalsIgnoreCase(san) ? "yes" : "no");
     }
-
 ```
 
 [к оглавлению](#Алгоритмы)
@@ -396,6 +393,193 @@ public class IntegratedTaxTest {
     }
 
 }
-
 ```
+[к оглавлению](#Алгоритмы)
+
+## Удаляет дубли из массива заменяет их нулями
+```java
+ @Test // удаляет дубли из массива, заменяет их нулями
+    public void removeDuplicatesTest() {
+        int[] values1 = new int[]{1, 1, 2, 2, 3, 4, 5};
+        System.out.println("removeDuplicates : " + Arrays.toString(removeDuplicates(values1)));
+    }
+
+    // удаляет дубли из массива, заменяет их нулями
+    private int[] removeDuplicates(int[] numbersWithDuplicates) {
+        // Sorting array to bring duplicates together
+        Arrays.sort(numbersWithDuplicates);
+        int[] result = new int[numbersWithDuplicates.length];
+        int previous = numbersWithDuplicates[0];
+        result[0] = previous;
+        for (int i = 1; i < numbersWithDuplicates.length; i++) {
+            int ch = numbersWithDuplicates[i];
+            if (previous != ch) {
+                result[i] = ch;
+            }
+            previous = ch;
+        }
+        return result;
+    }
+```
+[к оглавлению](#Алгоритмы)
+
+## Максимальное и минимальное значение в массиве
+```java
+    @Test //Максимальное и минимальное значение в массиве
+    public void minMaxValueInArrays() {
+        largestAndSmallest(new int[]{-20, 34, 21, -87, 92, Integer.MAX_VALUE});
+        largestAndSmallest(new int[]{10, Integer.MIN_VALUE, -2});
+        largestAndSmallest(new int[]{Integer.MAX_VALUE, 40, Integer.MAX_VALUE});
+    }
+
+    public void largestAndSmallest(int[] numbers) {
+        int largest = Integer.MIN_VALUE;
+        int smallest = Integer.MAX_VALUE;
+        for (int number : numbers) {
+            if (number > largest) {
+                largest = number;
+            } else if (number < smallest) {
+                smallest = number;
+            }
+        }
+        System.out.println("Given integer array : " + Arrays.toString(numbers));
+        System.out.println("Largest number in array is : " + largest);
+        System.out.println("Smallest number in array is : " + smallest);
+    }
+```
+[к оглавлению](#Алгоритмы)
+
+## Как найти все пары в массиве целых чисел сумма которых равна заданному числу
+```java
+    @Test //Как найти все пары в массиве целых чисел, сумма которых равна заданному числу
+    public void pairsSumTest() {
+        int[] numbers = {2, 4, 3, 5, 7, 8, 9};
+        printPairs(numbers, 8);
+    }
+
+    public void printPairs(int[] array, int sum) {
+        for (int i = 0; i < array.length; i++) {
+            int first = array[i];
+            for (int j = i + 1; j < array.length; j++) {
+                int second = array[j];
+                if ((first + second) == sum) {
+                    System.out.printf("(%d, %d) %n", first, second);
+                }
+            }
+        }
+    }
+```
+[к оглавлению](#Алгоритмы)
+## Выводит дубли букв
+```java
+    @Test //Выводит дубли букв
+    public void findDuplicateCharacters() {
+        printDuplicateCharacters("Programming");
+        printDuplicateCharacters("Combination");
+        printDuplicateCharacters("Java");
+    }
+
+    public static void printDuplicateCharacters(String word) {
+        char[] characters = word.toCharArray();
+        Map<Character, Integer> charMap = new HashMap<>();
+        for (Character ch : characters) {
+            if (charMap.containsKey(ch)) {
+                charMap.put(ch, charMap.get(ch) + 1);
+            } else {
+                charMap.put(ch, 1);
+            }
+        }
+        Set<Map.Entry<Character, Integer>> entrySet = charMap.entrySet();
+        System.out.printf("List of duplicate characters in String '%s' %n", word);
+        for (Map.Entry<Character, Integer> entry : entrySet) {
+            if (entry.getValue() > 1) {
+                System.out.printf("%s : %d %n", entry.getKey(), entry.getValue());
+            }
+        }
+    }
+```
+[к оглавлению](#Алгоритмы)
+## Перевернуть строку
+```java
+    @Test // перевернуть строку
+    public void reversString() {
+        System.out.println(reverse("123456"));
+        System.out.println(reverseRecursively("123456789"));
+    }
+
+    public static String reverse(String str) {
+        StringBuilder strBuilder = new StringBuilder();
+        char[] strChars = str.toCharArray();
+        for (int i = strChars.length - 1; i >= 0; i--) {
+            strBuilder.append(strChars[i]);
+        }
+        return strBuilder.toString();
+    }
+
+    public static String reverseRecursively(String str) {
+        if (str.length() < 2) {
+            return str;
+        }
+        return reverseRecursively(str.substring(1)) + str.charAt(0);
+    }
+```
+[к оглавлению](#Алгоритмы)
+
+## Простая сортировка пузырьком
+```java
+    @Test // Простая сортировка пузырьком
+    public void bubbleSortTest() {
+        int[] numbers = {12, 3, -9, 5, 55, 8, 9};
+        System.out.println(Arrays.toString(bubbleSort(numbers)));
+    }
+
+    private static int[] bubbleSort(int[] array) {
+        boolean sorted = false;
+        int temp;
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < array.length - 1; i++) {
+                if (array[i] > array[i + 1]) {
+                    temp = array[i];
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
+                    sorted = false;
+                }
+            }
+        }
+        return array;
+    }
+```
+[к оглавлению](#Алгоритмы)
+
+## Вычисление квадрата минимального если не получается целое число
+```java
+    @Test // вычисление квадрата минимального если не получается целое число
+    public void calculateSqrtTest(){
+        System.out.println(calculateSqrt(9));
+        System.out.println(calculateSqrt(16));
+        System.out.println(calculateSqrt(20));
+    }
+
+    private int calculateSqrt(int input) {
+        int low = 0;
+        int high = input;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int squMid = mid * mid;
+            if (squMid == input) {
+                return mid;
+            }
+            if (squMid > input) {
+                high = mid - 1;
+            }
+            if (squMid < input) {
+                low = mid + 1;
+            }
+
+        }
+        return low - 1;
+    }
+```
+
 [к оглавлению](#Алгоритмы)

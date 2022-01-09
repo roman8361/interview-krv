@@ -2,8 +2,12 @@
 
 # Алгоритмы
 + [Входит ли число в список(бинарный поиск)](algorithms.md#Входит-ли-число-в-список)
++ [Сортировка коллекции](algorithms.md#Сортировка-коллекции)  
 + [Числа Фибоначчи](algorithms.md#Числа-Фибоначчи)
 + [Факториал числа](algorithms.md#Факториал-числа)
++ [Вывести числа рекурсией](algorithms.md#Вывести-числа-рекурсией)
++ [Сколько гласных и согласных букв](Сколько-гласных-и-согласных-букв)
++ [Палиндром](algorithms.md#Палиндром)
 
 ## Входит ли число в список
 
@@ -17,6 +21,7 @@
         assertEquals(Boolean.FALSE, contains(list, 12));
     }
 
+    //работает только для отсортированного массива
     private Boolean contains(List<Integer> list, Integer item) {
         int low = 0;
         int high = list.size() - 1;
@@ -36,6 +41,43 @@
     }
 ```
 [к оглавлению](#Алгоритмы)
+
+## Сортировка-коллекции
+```java
+  @Test
+    public void selectionsSortTest() {
+        List<Integer> anyArray = new ArrayList<>(List.of(1, 2, Integer.MIN_VALUE, Integer.MAX_VALUE, 111, -222, 123, 8));
+        assertFalse(Arrays.equals(anyArray.toArray(), getSelectionsSort(anyArray).toArray())); // коллекции не равны
+        Collections.sort(anyArray); // сортировка коллекции классом Collections
+        assertArrayEquals(anyArray.toArray(), getSelectionsSort(anyArray).toArray());
+    }
+    
+    private List<Integer> getSelectionsSort(List<Integer> arr) {
+        List<Integer> result = new ArrayList<>();
+        int index = arr.size();
+        for (int i = 0; i < index; i++) {
+            Integer minItem = findSmallest(arr);
+            result.add(minItem);
+            arr.remove(minItem);
+        }
+        return result;
+    }
+
+    private int findSmallest(List<Integer> arr) {
+        int smallest = arr.get(0);
+        for (Integer i : arr) {
+            if (smallest > i) {
+                smallest = i;
+            }
+        }
+        return smallest;
+    }
+
+
+```
+
+[к оглавлению](#Алгоритмы)
+
 
 ## Числа Фибоначчи
 
@@ -82,6 +124,8 @@
     }
 
 ```
+
+[к оглавлению](#Алгоритмы)
 
 ## Факториал числа
 ```java
@@ -137,5 +181,106 @@
             return IntStream.rangeClosed(2, f).reduce((x, y) -> x * y).getAsInt();
             }
         }
+
+```
+
+[к оглавлению](#Алгоритмы)
+
+## Вывести числа рекурсией
+```java
+    @Test
+    public void recursSimpleTest() {
+        simpleRecurs(10);
+    }
+
+    private void simpleRecurs(int num) {
+        if (num == 0) return;
+        System.out.print(num-- + " ");
+        simpleRecurs(num);
+    }
+```
+
+[к оглавлению](#Алгоритмы)
+
+
+## Сколько гласных и согласных букв
+```java
+    @Test
+    public void stringTestArrays(){
+        final var consonants = "bcdfghjklmnpqrstvwxyz";
+        final var vowels = "aeiou";
+        final var word = "Hello World";
+
+        char[] arrayLatter = word.toCharArray();
+
+        var countVowels = 0;
+        var countConsonants = 0;
+        var countWords = word.split(" ").length;
+
+        for (int i = 0; i < arrayLatter.length; i++) {
+            final String s = String.valueOf(arrayLatter[i]).toLowerCase();
+            if (vowels.contains(s)) {
+                countVowels++;
+            }
+            if (consonants.contains(s)) {
+                countConsonants++;
+            }
+        }
+
+        System.out.println("Слов - " + countWords);
+        System.out.println("Гласных - " + countVowels);
+        System.out.println("Согласных - " + countConsonants);
+    }
+```
+
+[к оглавлению](#Алгоритмы)
+
+## Палиндром
+```java
+ /**
+     * Палиндром
+     * Палиндром - слово, которое одинаково читается в обоих направлениях.
+     * Например:
+     * 123454321
+     * madam i’m Adam
+     * Olson in Oslo
+     * Необходимо реализовать функцию:
+     * на вход функция получает строку;
+     * нужно вывести в консоль слово yes, если строка является палиндромом;
+     * нужно вывести в консоль слово no, если строка не является палиндромом;
+     * при определении палиндрома игнорировать все пробелы, знаки препинания и апостроф.
+     */
+    @Test
+    public void palindromeTest() {
+        String s1 = "123454321";
+        String s2 = "madam i’m Adam";
+        String s3 = "Olson in Oslo";
+        
+        checkPalindrom1(s1);
+        checkPalindrom1(s2);
+        checkPalindrom1(s3);
+        
+        checkPalindrom2(s1);
+        checkPalindrom2(s2);
+        checkPalindrom2(s3);
+    }
+
+    private void checkPalindrom1(String str) {
+        str = str.toLowerCase().replaceAll("[^A-Za-zА-Яа-я0-9]", ""); // удалится все кроме букв и цифр и lowerCase
+        String str1 = str.substring(0, str.length() / 2);
+        String str2 = str.length() % 2 == 0 ? reverseString(str.substring((str.length() / 2)))
+                : reverseString(str.substring((str.length() / 2) + 1));
+        System.out.println(str1.equals(str2) ? "yes" : "no");
+    }
+
+    private String reverseString(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+
+    //TODO BestPractice
+    void checkPalindrom2(String s) {
+        String san = s.replaceAll("[^A-Za-z0-9]", "");
+        System.out.println(new StringBuilder(san).reverse().toString().equalsIgnoreCase(san) ? "yes" : "no");
+    }
 
 ```

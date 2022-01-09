@@ -89,6 +89,7 @@
 + [Как одной строчкой преобразовать `ArrayList` в `HashSet`?](#Как-одной-строчкой-преобразовать-arraylist-в-hashset)
 + [Сделайте `HashSet` из ключей `HashMap`.](#Сделайте-hashset-из-ключей-hashmap)
 + [Сделайте `HashMap` из `HashSet<Map.Entry<K, V>>`.](#Сделайте-hashmap-из-hashsetmapentryk-v)
++ [Сравнение работы ArrayList, LinkedList, Vector](jcf.md#Сравнение-работы-ArrayList,-LinkedList,-Vector)
 
 ## Что такое _«коллекция»_?
 _«Коллекция»_ - это структура данных, набор каких-либо объектов. Данными (объектами в наборе) могут быть числа, строки, объекты пользовательских классов и т.п.
@@ -1100,6 +1101,173 @@ for (Map.Entry<K, V> entry : set) {
 ```
 
 [к оглавлению](#java-collections-framework)
+
+## Сравнение работы ArrayList, LinkedList, Vector
+```java
+public class ArrayLinkedVectorListTest {
+
+    private static final int COUNT = 10_000_000;
+    private static final int NANO  = 1_000_000_000;
+
+    @Test
+    public void fillListTest (){
+        System.out.println("fillListTest");
+        arrayListTest(new ArrayList<>(), "ArrayList");
+        arrayListTest(new LinkedList<>(), "LinkedList");
+        arrayListTest(new Vector<>(), "Vector");
+        System.out.println("============");
+    }
+
+    @Test
+    public void findByIndexTest (){
+        System.out.println("findByIndexTest");
+        findByIndex(new ArrayList<>(), "ArrayList");
+        findByIndex(new LinkedList<>(), "LinkedList");
+        findByIndex(new Vector<>(), "Vector");
+        System.out.println("============");
+    }
+
+    @Test
+    public void findByElementTest (){
+        System.out.println("findByElementTest");
+        findByElement(new ArrayList<>(), "ArrayList");
+        findByElement(new LinkedList<>(), "LinkedList");
+        findByElement(new Vector<>(), "Vector");
+        System.out.println("============");
+    }
+
+    @Test
+    public void removeElementByIndexTest (){
+        System.out.println("removeElementByIndexTest");
+        removeElementByIndex(new ArrayList<>(), "ArrayList");
+        removeElementByIndex(new LinkedList<>(), "LinkedList");
+        removeElementByIndex(new Vector<>(), "Vector");
+        System.out.println("============");
+    }
+
+    @Test
+    public void insertElementInMiddleTest (){
+        System.out.println("insertElementInMiddleTest");
+        insertElementInMiddle(new ArrayList<>(), "ArrayList");
+        insertElementInMiddle(new LinkedList<>(), "LinkedList");
+        insertElementInMiddle(new Vector<>(), "Vector");
+        System.out.println("============");
+    }
+
+    private void insertElementInMiddle(List<Integer>list, String title){
+        fillList(list, COUNT);
+        int index = COUNT / 2;
+        long startNanoTime = getCurrentNanoTime();
+        list.add(index, 3);
+        long endNanoTime = getCurrentNanoTime();
+        System.out.println(title + " : " + convertToSecond(endNanoTime - startNanoTime) + " seconds");
+    }
+
+    private void removeElementByIndex(List<Integer>list, String title){
+        fillList(list, COUNT);
+        int index = COUNT / 2;
+        long startNanoTime = getCurrentNanoTime();
+        list.remove(index);
+        long endNanoTime = getCurrentNanoTime();
+        System.out.println(title + " : " + convertToSecond(endNanoTime - startNanoTime) + " seconds");
+    }
+
+    private void findByElement(List<Integer>list, String title){
+        fillList(list, COUNT);
+        int number = COUNT / 2;
+        long startNanoTime = getCurrentNanoTime();
+        list.contains(number);
+        long endNanoTime = getCurrentNanoTime();
+        System.out.println(title + " : " + convertToSecond(endNanoTime - startNanoTime) + " seconds");
+    }
+
+    private void findByIndex (List<Integer>list, String title){
+        fillList(list, COUNT);
+        int index = COUNT / 2;
+        long startNanoTime = getCurrentNanoTime();
+        list.get(index);
+        long endNanoTime = getCurrentNanoTime();
+        System.out.println(title + " : " + convertToSecond(endNanoTime - startNanoTime) + " seconds");
+    }
+
+    private void arrayListTest(List<Integer> list, String title){
+        long startNanoTime = getCurrentNanoTime();
+        fillList(list, COUNT);
+        long endNanoTime = getCurrentNanoTime();
+        System.out.println(title + " : " + convertToSecond(endNanoTime - startNanoTime) + " seconds");
+    }
+
+    private void fillList(List<Integer> list, long count){
+        for (int i = 0; i < count; i++) {
+            list.add(i);
+        }
+    }
+
+    private long getCurrentNanoTime(){
+        return System.nanoTime();
+    }
+
+    private String convertToSecond(double nanoTime){
+        return String.valueOf(nanoTime / NANO);
+    }
+
+}
+
+```
+Результат:
+
+removeElementByIndexTest
+
+ArrayList : 0.049417 seconds
+
+LinkedList : 0.0594778 seconds
+
+Vector : 0.010413801 seconds
+
+============
+
+insertElementInMiddleTest
+
+ArrayList : 0.061983 seconds
+
+LinkedList : 0.038094901 seconds
+
+Vector : 0.0098359 seconds
+
+============
+
+findByIndexTest
+
+ArrayList : 2.1001E-5 seconds
+
+LinkedList : 0.036499799 seconds
+
+Vector : 1.1E-5 seconds
+
+============
+
+fillListTest
+
+ArrayList : 0.532801801 seconds
+
+LinkedList : 1.4539443 seconds
+
+Vector : 0.4656299 seconds
+
+============
+
+findByElementTest
+
+ArrayList : 0.0212228 seconds
+
+LinkedList : 0.0472366 seconds
+
+Vector : 0.0199109 seconds
+
+============
+
+[к оглавлению](#java-collections-framework)
+
 
 # Источник
 + [parshinpn.pro](http://www.parshinpn.pro/content/voprosy-i-otvety-na-sobesedovanii-po-teme-java-collection-framework-chast-1)

@@ -8,6 +8,7 @@
 + [Вывести числа рекурсией](algorithms.md#Вывести-числа-рекурсией)
 + [Сколько гласных и согласных букв](Сколько-гласных-и-согласных-букв)
 + [Палиндром](algorithms.md#Палиндром)
++ [Интегрированная шкала налогов](algorithms.md#Интегрированная-шкала-налогов)
 
 ## Входит ли число в список
 
@@ -284,3 +285,117 @@
     }
 
 ```
+
+[к оглавлению](#Алгоритмы)
+
+## Интегрированная шкала налогов
+```java
+/** 
+ * 1 - 1000 -> 10%
+ * 1000 - 3000 -> 15%
+ * 3001 - ... -> 20%
+ * 7000: 1000 * 0.10 + 2000 * 0.15 + 4000 * 0.20 = ...
+ */
+public class TaxTest {
+
+    @Test
+    public void taxTest() {
+        var taxesConfiguration = List.of(new Tax(1000f, .1f),
+                new Tax(2000f, .15f), new Tax(3000f, .2f));
+        assertEquals(720.0f, getAmountToPay(taxesConfiguration, 800f));
+        assertEquals(2005.0f, getAmountToPay(taxesConfiguration, 2300f));
+        assertEquals(5800.0f, getAmountToPay(taxesConfiguration, 7000f));
+    }
+
+    private float getAmountToPay(List<Tax> taxesConfiguration, Float salary) {
+        var salaryPercent = taxesConfiguration.stream().map(Tax::getSalaryPercent).collect(Collectors.toList());
+        var percent = taxesConfiguration.stream().map(Tax::getPercent).collect(Collectors.toList());
+        
+        if (salary - salaryPercent.get(0) < 0) {
+            return salary - (salary * percent.get(0));
+        }
+
+        if (salary - (salaryPercent.get(0) + salaryPercent.get(1)) < 0) {
+            return salary - ((salaryPercent.get(0) * percent.get(0) + (salary - salaryPercent.get(0)) * percent.get(1)));
+        }
+
+        return salary - ((salaryPercent.get(0) * percent.get(0) + (salaryPercent.get(1) * percent.get(1)
+                + ((salary - salaryPercent.get(0) - salaryPercent.get(1)) * percent.get(2)))));
+    }
+    
+    class Tax {
+        float salaryPercent;
+        float percent;
+
+        public Tax(float salary, float percent) {
+            this.salaryPercent = salary;
+            this.percent = percent;
+        }
+
+        public float getSalaryPercent() {
+            return salaryPercent;
+        }
+
+        public float getPercent() {
+            return percent;
+        }
+    }
+
+}
+
+/**
+ * Вариант с HashMap
+ * /** 
+ * 1 - 1000 -> 10%
+ * 1000 - 3000 -> 15%
+ * 3001 - ... -> 20%
+ * 7000: 1000 * 0.10 + 2000 * 0.15 + 4000 * 0.20 = ...
+ */
+ 
+public class IntegratedTaxTest {
+
+    @Test
+    public void integratesTaxTest() {
+        final Map<Float, Float> taxManifest = new HashMap<>();
+        taxManifest.put(10f, 1000f);
+        taxManifest.put(15f, 2000f);
+        taxManifest.put(20f, 1f);
+
+        assertEquals(60.f, getIntegratedTax(taxManifest, 600f), 0.0f);
+        assertEquals(100.f, getIntegratedTax(taxManifest, 1000f), 0.0f);
+        assertEquals(175.f, getIntegratedTax(taxManifest, 1500f), 0.0f);
+        assertEquals(220.f, getIntegratedTax(taxManifest, 1800f), 0.0f);
+        assertEquals(250.f, getIntegratedTax(taxManifest, 2000f), 0.0f);
+        assertEquals(340.f, getIntegratedTax(taxManifest, 2600f), 0.0f);
+        assertEquals(400.f, getIntegratedTax(taxManifest, 3000f), 0.0f);
+        assertEquals(800.f, getIntegratedTax(taxManifest, 5000f), 0.0f);
+        assertEquals(1200.f, getIntegratedTax(taxManifest, 7000f), 0.0f);
+        assertEquals(1800.f, getIntegratedTax(taxManifest, 10000f), 0.0f);
+    }
+
+    private Float getIntegratedTax(Map<Float, Float> taxManifest, Float salary) {
+        float accumTax = 0f;
+        float salarySum = 0f;
+        float lastSalarySum = 0f;
+
+        final List<Float> manifestKeys = new ArrayList<>(taxManifest.keySet());
+        final List<Float> manifestValues = new ArrayList<>(taxManifest.values());
+
+        for (int i = 0; i < manifestKeys.size(); i++) {
+            salarySum += manifestValues.get(i);
+            float salaryDif = salary - salarySum;
+
+            if (salaryDif < 0 || i == manifestKeys.size() - 1) {
+                accumTax += (salary - lastSalarySum) * (manifestKeys.get(i) / 100);
+                return accumTax;
+            }
+            accumTax += manifestValues.get(i) * (manifestKeys.get(i) / 100);
+            lastSalarySum = salarySum;
+        }
+        return -1f;
+    }
+
+}
+
+```
+[к оглавлению](#Алгоритмы)

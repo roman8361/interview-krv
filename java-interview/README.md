@@ -251,7 +251,7 @@
 + [Как одной строчкой преобразовать `ArrayList` в `HashSet`?](jcf.md#Как-одной-строчкой-преобразовать-arraylist-в-hashset)
 + [Сделайте `HashSet` из ключей `HashMap`.](jcf.md#Сделайте-hashset-из-ключей-hashmap)
 + [Сделайте `HashMap` из `HashSet<Map.Entry<K, V>>`.](jcf.md#Сделайте-hashmap-из-hashsetmapentryk-v)
-+ [Сравнение работы ArrayList, LinkedList, Vector](jcf.md#Сравнение-работы-ArrayList,-LinkedList,-Vector)
++ [Сравнение работы ArrayList, LinkedList, Vector](jcf.md#Сравнение-работы-ArrayList-LinkedList-Vector)
 
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)

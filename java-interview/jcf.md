@@ -89,7 +89,7 @@
 + [Как одной строчкой преобразовать `ArrayList` в `HashSet`?](#Как-одной-строчкой-преобразовать-arraylist-в-hashset)
 + [Сделайте `HashSet` из ключей `HashMap`.](#Сделайте-hashset-из-ключей-hashmap)
 + [Сделайте `HashMap` из `HashSet<Map.Entry<K, V>>`.](#Сделайте-hashmap-из-hashsetmapentryk-v)
-+ [Сравнение работы ArrayList, LinkedList, Vector](jcf.md#Сравнение-работы-ArrayList,-LinkedList,-Vector)
++ [Сравнение работы ArrayList, LinkedList, Vector](jcf.md#Сравнение-работы-ArrayList-LinkedList-Vector)
 
 ## Что такое _«коллекция»_?
 _«Коллекция»_ - это структура данных, набор каких-либо объектов. Данными (объектами в наборе) могут быть числа, строки, объекты пользовательских классов и т.п.
@@ -1102,7 +1102,7 @@ for (Map.Entry<K, V> entry : set) {
 
 [к оглавлению](#java-collections-framework)
 
-## Сравнение работы ArrayList, LinkedList, Vector
+## Сравнение работы ArrayList LinkedList Vector
 ```java
 public class ArrayLinkedVectorListTest {
 

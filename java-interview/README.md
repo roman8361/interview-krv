@@ -509,9 +509,12 @@
 + [Что такое Spring? Из каких частей состоит Spring Framework?](spring.md#Что-такое-Spring?-Из-каких-частей-состоит-Spring-Framework?)
 + [Что такое AOP? Как это относиться к IoC?](spring.md#Что-такое-AOP?-Как-это-относиться-к-IoC?)
 + [Какие вы знаете различные scope у Spring Bean?](spring.md#Какие-вы-знаете-различные-scope-у-Spring-Bean?)
++ [Что такое бин](spring.md#Что-такое-бин)
 + [Что такое жизненный цикл Spring Bean?](spring.md#Что-такое-жизненный-цикл-Spring-Bean?)
 + [Каким образом можно управлять транзакциями в Spring?](spring.md#Каким-образом-можно-управлять-транзакциями-в-Spring?)
 + [Какая разница между аннотациями @Component, @Repository и @Service в Spring?](spring.md#Какая-разница-между-аннотациями-@Component,-@Repository-и-@Service-в-Spring?)
++ [Чем отличается Bean от Component](spring.md#Чем-отличается-Bean-от-Component)
++ [В чём состоит различие между Spring и Spring Boot?](spring.md#В-чём-состоит-различие-между-Spring-и-Spring-Boot?)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

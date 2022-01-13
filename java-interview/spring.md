@@ -13,7 +13,7 @@
 + [Чем отличается Bean от Component](spring.md#Чем-отличается-Bean-от-Component)
 + [В чём состоит различие между Spring и Spring Boot?](spring.md#В-чём-состоит-различие-между-Spring-и-Spring-Boot?)
 + [@Transactional](spring.md#@Transactional)
-+ [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC,-JPA,-Hibernate,-Spring Data Jpa.)
++ [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC,-JPA,-Hibernate,-Spring-Data-Jpa)
 
 
 ## Суть паттерна DI IOC
@@ -188,7 +188,7 @@ Spring предлагает очень простой декларативный
 
 [к оглавлению](#Spring)
 
-## JDBC, JPA, Hibernate, Spring Data Jpa.
+## JDBC, JPA, Hibernate, Spring Data Jpa
 __JDBC__ — это мост между миром Java и миром баз данных. Ведь первое, что мы ищем когда хотим 
 подключить базу данных к нашему приложению — jdbc драйвер. Если мы работаем с Maven, тогда мы 
 ищем зависимость для драйвера к определенной базе.

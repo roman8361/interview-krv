@@ -503,8 +503,8 @@
 + [Что такое _Dependency Injection_?](patterns.md#Что-такое-dependency-injection)
   
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
-### Spring
 
+### Spring
 + [Суть паттерна DI IOC](spring.md#Суть-паттерна-DI-IOC)
 + [Что такое Spring? Из каких частей состоит Spring Framework?](spring.md#Что-такое-Spring?-Из-каких-частей-состоит-Spring-Framework?)
 + [Что такое AOP? Как это относиться к IoC?](spring.md#Что-такое-AOP?-Как-это-относиться-к-IoC?)
@@ -516,6 +516,7 @@
 + [Чем отличается Bean от Component](spring.md#Чем-отличается-Bean-от-Component)
 + [В чём состоит различие между Spring и Spring Boot?](spring.md#В-чём-состоит-различие-между-Spring-и-Spring-Boot?)
 + [@Transactional](spring.md#@Transactional)
++ [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC,-JPA,-Hibernate,-Spring Data Jpa.)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

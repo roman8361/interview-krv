@@ -2,7 +2,7 @@
 
 # Spring
 
-+ [Суть паттерна DI IOC](spring.md#Суть-паттерна-DI-IOC)
++ [Суть паттерна DI IOC](Суть-паттерна-DI-IOC)
 + [Что такое Spring? Из каких частей состоит Spring Framework?](spring.md#Что-такое-Spring?-Из-каких-частей-состоит-Spring-Framework?)
 + [Что такое AOP? Как это относиться к IoC?](spring.md#Что-такое-AOP?-Как-это-относиться-к-IoC?)
 + [Какие вы знаете различные scope у Spring Bean?](spring.md#Какие-вы-знаете-различные-scope-у-Spring-Bean?)

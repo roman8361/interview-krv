@@ -1,4 +1,4 @@
 [Вопросы для собеседования](README.md)
 
 # Обо мне
-![icon](resources/nero2.png)
+![](resources/nero2.png=x300)

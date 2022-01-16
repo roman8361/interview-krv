@@ -14,7 +14,7 @@
 + [Шаблоны проектирования](#Шаблоны-проектирования)![icon](resources/done.png)
 + [Spring](#Spring)![icon](resources/done.png)
 + [Микросервисы](#Микросервисы)
-+ [Основы Web](#Основы-web) ![icon][done]
++ [Основы Web](#Основы-web) ![icon](resources/done.png)
 + [Обо мне](#Обо-мне)
 + [Алгоритмы](#Алгоритмы)![icon](resources/done.png)
 
@@ -519,6 +519,9 @@
 + [В чём состоит различие между Spring и Spring _Boot?_](spring.md#В-чём-состоит-различие-между-Spring-и-Spring-Boot)
 + [@Transactional](spring.md#Transactional)
 + [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC-JPA-Hibernate-Spring-Data-Jpa)
++ [Что такое Spring _MVC?_](spring.md#Что-такое-spring-mvc)
++ [Определение Контроллера](spring.md#определение-контроллера)
+
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

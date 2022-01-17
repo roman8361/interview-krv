@@ -521,6 +521,7 @@
 + [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC-JPA-Hibernate-Spring-Data-Jpa)
 + [Что такое Spring _MVC?_](spring.md#Что-такое-spring-mvc)
 + [Определение Контроллера](spring.md#определение-контроллера)
++ [@RestController vs @Controller](spring.md#RestController-vs-Controller)
 
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)

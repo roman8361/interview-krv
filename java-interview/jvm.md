@@ -1,3 +1,5 @@
+[Вопросы для собеседования](../README.md)
+
 ## JVM
 + [За что отвечает JVM](jvm.md#За-что-отвечает-JVM)
 + [Heap-и-Stack](jvm.md#Heap-и-Stack)

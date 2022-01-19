@@ -16,7 +16,7 @@
 + [Микросервисы](#Микросервисы)
 + [Основы Web](#Основы-web) ![icon](java-interview/resources/done.png)
 + [Обо мне](#Обо-мне)
-+ [Алгоритмы](#Алгоритмы)![icon](resources/done.png)
++ [Алгоритмы](#Алгоритмы)![icon](java-interview/resources/done.png)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

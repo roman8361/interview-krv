@@ -526,29 +526,35 @@ public class IntegratedTaxTest {
 [к оглавлению](#Алгоритмы)
 
 ## Простая сортировка пузырьком
+
 ```java
-    @Test // Простая сортировка пузырьком
+    @Test // Сложность O(n^2)
     public void bubbleSortTest() {
         int[] numbers = {12, 3, -9, 5, 55, 8, 9};
         System.out.println(Arrays.toString(bubbleSort(numbers)));
     }
 
-    private static int[] bubbleSort(int[] array) {
-        boolean sorted = false;
-        int temp;
-        while (!sorted) {
-            sorted = true;
-            for (int i = 0; i < array.length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    temp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = temp;
-                    sorted = false;
+    private int[] bubbleSort(int[] array) {
+        boolean sorted  = true;
+        while (sorted) {
+            sorted = false;
+            for (int i = 1; i < array.length; i++) {
+                if (array[i] < array[i - 1]) {
+                    swap(array, i, i-1);
+                    sorted = true;
                 }
             }
         }
         return array;
     }
+
+    // Перемена мест в массиве
+    private void swap(int[] array, int ind1, int ind2) {
+        int tmp = array[ind1];
+        array[ind1] = array[ind2];
+        array[ind2] = tmp;
+    }
+
 ```
 [к оглавлению](#Алгоритмы)
 

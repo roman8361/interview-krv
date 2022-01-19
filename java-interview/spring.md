@@ -193,6 +193,150 @@ Spring предлагает очень простой декларативный
 будет отменена (операция rollback) и все данные вернуться в то состояние, в котором они 
 были до начала транзакции.
 
+Предположим, у нас есть метод в спринговом сервисе, который выполняет несколько запросов в БД. Для простоты можно 
+использовать Spring Data, чтобы оперировать записями в БД в ООП стиле.
+
+Сама сущность, которую мы сохраняем в базу, имеет следующий вид:
+
+```java
+@Entity
+public class Record {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String name;
+
+    // get- и set-методы...
+}
+```
+Слой dao, представляющий базовые методы для сохранения данной сущности в БД выглядит так:
+
+```java
+public interface ExampleDao extends CrudRepository<Record, Integer> {
+}
+```
+
+Теперь создадим метод в сервисном слое, который сначала создаёт сущность, сохраняет её в БД, затем обновляет её имя. 
+То есть сначала в БД происходит запрос insert, затем update.
+
+```java
+@Service
+public class ExampleService {
+
+    private final ExampleDao exampleDao;
+
+    public ExampleService(ExampleDao exampleDao) {
+        this.exampleDao = exampleDao;
+    }
+
+    public void doTransaction() {
+        var record = new Record();
+        record.setName("created");
+        exampleDao.save(record); // insert
+        record.setName("updated");
+        exampleDao.save(record); // update
+    }
+}
+```
+Сервисный метод вызывается из контроллера при помощи POST-запроса:
+
+```java
+@RestController
+public class ExampleController {
+
+    private final ExampleService exampleService;
+
+    public ExampleController(ExampleService exampleService) {
+        this.exampleService = exampleService;
+    }
+
+    @PostMapping
+    public void doTransaction() {
+        exampleService.doTransaction();
+    }
+}
+```
+
+Данный код всегда работает без ошибок. А теперь добавим между созданием и обновлением записи в БД ошибку.
+
+```java
+public void doTransaction() {
+    var record = new Record();
+    record.setName("created");
+    exampleDao.save(record);
+    if (record.getId() > 0) {
+        throw new RuntimeException();
+    }
+    record.setName("updated");
+    exampleDao.save(record);
+}
+```
+
+Если мы выполним данный код, то увидим, что новая запись была добавлена в таблицу, но до обновления дело уже не дошло. 
+Чтобы держать наши данные согласованными, достаточно добавить к методу вышеупомянутую аннотацию:
+
+```java
+@Transactional
+public void doTransaction() {
+    var record = new Record();
+    record.setName("created");
+    exampleDao.save(record);
+    if (record.getId() > 0) {
+        throw new RuntimeException();
+    }
+    record.setName("updated");
+    exampleDao.save(record);
+}
+```
+
+В данном случае первый запрос будет выполнен, а потом отменён и в таблице в БД новых записей так и не появится.
+
+Бывают такие ошибки, при которых откатывать транзакцию не требуется. Эти исключения вы можете перечислить при помощи 
+параметра dontRollbackOn:
+
+```java
+@Transactional(dontRollbackOn = {RuntimeException.class})
+```
+Если мы сделаем так для нашего примера, то запись всё-таки будет создана, затем возникнет исключение, обновления уже не произойдёт, но транзакция всё равно будет завершена.
+
+Как Spring реализует механизм создания транзакций? Важно отметить, что @Transactional будет работать только для публичных
+методов, вызываемых из других компонентов. Это происходит потому что спринг делает вызов целевого метода через прокси-объект, 
+имеющий такой же интерфейс, как и наш сервис. В этом прокси-объекте происходит открытие транзакции перед вызовом целевого 
+метода. Затем, после завершения целевого метода, происходит закрытие транзакции. Если из метода вылетит исключение, 
+транзакция будет отменена. Это поведение похоже на конструкцию try-catch. Можно представлять себе логику работы прокси так:
+
+```java
+try {
+    // открытие транзакции
+    // вызов целевого метода
+    // commit
+} catch (Exception e) {
+    // rollback
+}
+```
+
+Если вы повесите @Transactional на какой-либо метод и вызовете его из того же сервиса, но из другого метода, механизм 
+работать не будет, т.к. вызов не проходит через прокси. Это надо иметь в виду.
+
+```java
+@Service
+public class ExampleService {
+
+    public void doWrongTransaction() {
+        doTransaction(); // так транзакция работать не будет!
+    }
+
+    @Transactional
+    public void doTransaction() {
+        // работа с БД
+    }
+}
+```
+
+Взято от сюда (https://devmark.ru/article/spring-transaction-management)
+
+
 [к оглавлению](#Spring)
 
 ## JDBC, JPA, Hibernate, Spring Data Jpa
@@ -255,7 +399,7 @@ ORM реализации JPA. По умолчанию Spring Data JPA испол
 * **Controller** (Контроллер) обрабатывает запрос пользователя, создаёт соответствующую Модель и передаёт её для отображения в Вид.
 
 
-###DispatcherServlet
+## DispatcherServlet
 
 Вся логика работы Spring MVC построена вокруг DispatcherServlet, который принимает и обрабатывает все HTTP-запросы 
 (из UI) и ответы на них. Рабочий процесс обработки запроса DispatcherServlet'ом проиллюстрирован на следующей диаграмме:

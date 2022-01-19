@@ -17,6 +17,9 @@
 + [Основы Web](#Основы-web) ![icon](java-interview/resources/done.png)
 + [Обо мне](#Обо-мне)
 + [Алгоритмы](#Алгоритмы)![icon](java-interview/resources/done.png)
++ [Kubernetes](#Kubernetes)
++ [Kafka](#Kafka)
++ [Docker](#Docker)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 
@@ -544,8 +547,15 @@
 ### Микросервисы
 + [Что характеризует МС](java-interview/ms.md#Что-характеризует-МС)
 + [Какие есть плюсы и минусы микросервесно _архитектуры?_](java-interview/ms.md#Какие-есть-плюсы-и-минусы-микросервесно-архитектуры)
++ [Паттерн Агрегатор (Aggregator)](java-interview/ms.md#Паттерн-Агрегатор-Aggregator)
++ [Паттерн проектирования «Цепочка» (Chained)](java-interview/ms.md#Паттерн-проектирования-Цепочка-Chained)
++ [Паттерн проектирования «Ветка» (Branch)](java-interview/ms.md#Паттерн-проектирования-Ветка-Branch)
++ [Паттерн «Разделяемые данные» (Shared Data)](java-interview/ms.md#Паттерн-Разделяемые-данные-Shared-Data)
++ [Паттерн «Асинхронные сообщения» (Asynchronous Messaging)](java-interview/ms.md#Паттерн-Асинхронные-сообщения-Asynchronous-Messaging)
++ [Паттерн Saga](java-interview/ms.md#Паттерн-Saga)
++ [Двух фазный коммит](java-interview/ms.md#Двух-фазный-коммит)
 
-[к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+[к оглавлению](java-interview/ms.md#Вопросы-для-собеседования-на-java-developer)
 
 ## Основы WEB
 + [Что такое _WWW_?](java-interview/web.md#Что-такое-www)
@@ -598,5 +608,23 @@
 + [Простая сортировка пузырьком](java-interview/algorithms.md#Простая-сортировка-пузырьком)
 + [Вычисление квадрата минимального если не получается целое число](java-interview/algorithms.md#Вычисление-квадрата-минимального-если-не-получается-целое-число)
 
+
+[к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
+### Kubernetes
+
++ [Что такое Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
+
+[к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
+### Kafka
+
++ [Что такое Kafka?](java-interview/kafka.md#Что-такое-Kafka)
+
+[к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
+### Docker
+
++ [Что такое Docker?](java-interview/docker.md#Что-такое-Docker)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)

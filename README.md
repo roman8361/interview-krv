@@ -606,6 +606,7 @@
 + [Выводит дубли букв](java-interview/algorithms.md#Выводит-дубли-букв)
 + [Перевернуть строку](java-interview/algorithms.md#Перевернуть-строку)
 + [Простая сортировка пузырьком](java-interview/algorithms.md#Простая-сортировка-пузырьком)
++ [Сортировка выбором](java-interview/algorithms.md#Сортировка-выбором)
 + [Вычисление квадрата минимального если не получается целое число](java-interview/algorithms.md#Вычисление-квадрата-минимального-если-не-получается-целое-число)
 
 
@@ -614,6 +615,8 @@
 ### Kubernetes
 
 + [Что такое Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
++ [Базовая концепции внутреннего устройства Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
++ [Архитектура Kubernetes](java-interview/kuber.md#Архитектура-Kubernetes)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

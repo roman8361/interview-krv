@@ -46,7 +46,7 @@
 
 #### Broker
 
-<img src="./resources/broker.png" width="450" height="600"/>
+<img src="./resources/broker.png" width="600" height="400"/>
 
 За хранение ваших данных отвечает брокер (broker). Все данные хранятся в бинарном виде, и брокер мало знает про то,
 что они из себя представляют, и какова их структура.
@@ -115,7 +115,7 @@ Producer — это чаще всего сервис, осуществляющи
 
 #### Consumer
 
-<img src="./resources/consumer_kafka.png" width="450" height="600"/>
+<img src="./resources/consumer_kafka.png" width="600" height="600"/>
 
 Consumer отвечает за получение данных из Apache Kafka. Если вернуться к примеру выше, consumer’ом может быть сервис
 модерации. Этот сервис будет подписан на топик сервиса объявлений и при появление нового объявления будет получать 

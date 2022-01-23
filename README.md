@@ -20,6 +20,7 @@
 + [Kubernetes](#Kubernetes)
 + [Kafka](#Kafka)
 + [Docker](#Docker)
++ [Тестирование](#Тестирование)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 
@@ -634,5 +635,20 @@
 ### Docker
 
 + [Что такое Docker?](java-interview/docker.md#Что-такое-Docker)
++ [Docker Compose](java-interview/docker.md#Docker-Compose)
+
+[к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
+### Тестирование
+
++ [Что такое _«модульное тестирование»_?](java-interview/test.md#Что-такое-модульное-тестирование)
++ [Что такое _«интеграционное тестирование»_?](java-interview/test.md#Что-такое-интеграционное-тестирование)
++ [Чем интеграционное тестирование отличается от модульного?](java-interview/test.md#Чем-интеграционное-тестирование-отличается-от-модульного)
++ [Какие существуют виды тестовых объектов?](java-interview/test.md#Какие-существуют-виды-тестовых-объектов)
++ [Чем _stub_ отличается от _mock_?](java-interview/test.md#Чем-stub-отличается-от-mock)
++ [Что такое _«фикстуры»_?](java-interview/test.md#Что-такое-фикстуры)
++ [Какие аннотации фикстур существуют в JUnit?](java-interview/test.md#Какие-аннотации-фикстур-существуют-в-junit)
++ [Для чего в JUnit используется аннотация `@Ignore`?](java-interview/test.md#Для-чего-в-junit-используется-аннотация-ignore)
++ [TDD и BDD](java-interview/test.md#TDD-и-BDD)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)

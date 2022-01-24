@@ -570,7 +570,7 @@ public class RestFulController {
 Spring Boot. Скорее, сторонний стартер обычно начинается с названия проекта. Например, сторонний стартер проекта под 
 названием thirdpartyproject обычно будет называться thirdpartyproject-spring-boot-starter.
 
-| Имя |	Описание 2 |
+| Имя |	Описание  |
 |--------------|--------------|
 | spring-boot-starter | Core starter, включающий поддержку автоконфигурации, логирование и YAML|
 | spring-boot-starter-oauth2-client	| Starter для использования возможностей Spring Security OAuth2/OpenID Connect клиента |

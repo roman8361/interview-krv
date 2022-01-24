@@ -541,6 +541,7 @@
 + [Что такое Spring _MVC?_](java-interview/spring.md#Что-такое-spring-mvc)
 + [Определение Контроллера](java-interview/spring.md#определение-контроллера)
 + [@RestController vs @Controller](java-interview/spring.md#RestController-vs-Controller)
++ [Spring Boot стартеры](spring.md#spring-boot-стартеры)
 
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)

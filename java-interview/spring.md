@@ -14,7 +14,7 @@
 + [В чём состоит различие между Spring и Spring _Boot?_](spring.md#В-чём-состоит-различие-между-Spring-и-Spring-Boot)
 + [@Transactional](spring.md#Transactional)
 + [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC-JPA-Hibernate-Spring-Data-Jpa)
-+ [JPA зачем надо Fetch](spring.md#JPA зачем надо Fetch)
++ [JPA зачем надо Fetch](spring.md#JPA-зачем-надо-Fetch)
 + [Что такое Spring _MVC?_](spring.md#Что-такое-spring-mvc)
 + [Определение Контроллера](spring.md#определение-контроллера)
 + [@RestController vs @Controller](spring.md#RestController-vs-Controller)

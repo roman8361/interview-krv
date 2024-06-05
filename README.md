@@ -539,6 +539,7 @@
 + [@Transactional](java-interview/spring.md#Transactional)
 + [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](java-interview/spring.md#JDBC-JPA-Hibernate-Spring-Data-Jpa)
 + [JPA зачем надо Fetch](java-interview/spring.md#JPA-зачем-надо-Fetch)
++ [Criteria API зачем надо как использовать?](java-interview/spring.md#Criteria-API)
 + [Что такое Spring _MVC?_](java-interview/spring.md#Что-такое-spring-mvc)
 + [Определение Контроллера](java-interview/spring.md#определение-контроллера)
 + [@RestController vs @Controller](java-interview/spring.md#RestController-vs-Controller)

@@ -633,6 +633,7 @@
 + [Что в Кафке означает брокер?](java-interview/kafka.md#Что-в-Кафке-означает-брокер)
 + [Какую максимальную информацию может получить сервер Kafka?](java-interview/kafka.md#Какую-максимальную-информацию-может-получить-сервер-Kafka)
 + [Что такое Zookeeper от Kafka? Можно ли использовать Kafka без Zookeeper?](java-interview/kafka.md#что-такое-Zookeeper-от-Kafka?-Можно-ли-использовать-Kafka-без-Zookeeper)
++ [Ансамбль в Зукипере](java-interview/kafka.md#ансамбль-в-Зукипере)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

@@ -620,6 +620,8 @@
 + [Что такое Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
 + [Базовая концепции внутреннего устройства Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
 + [Архитектура Kubernetes](java-interview/kuber.md#Архитектура-Kubernetes)
++ [Кубер как поды создаются?](java-interview/kuber.md#Кубер-как-поды-создаются?)
++ [Кубер сайт кард что это?](java-interview/kuber.md#Кубер-сайт-кард-что-это?)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 
@@ -634,6 +636,8 @@
 + [Какую максимальную информацию может получить сервер Kafka?](java-interview/kafka.md#Какую-максимальную-информацию-может-получить-сервер-Kafka)
 + [Что такое Zookeeper от Kafka? Можно ли использовать Kafka без Zookeeper?](java-interview/kafka.md#что-такое-Zookeeper-от-Kafka?-Можно-ли-использовать-Kafka-без-Zookeeper)
 + [Ансамбль в Зукипере](java-interview/kafka.md#ансамбль-в-Зукипере)
++ [Количество зукиперов не чётное](java-interview/kafka.md#Количество-зукиперов-не-чётное)
+
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
 

@@ -35,7 +35,7 @@
 
 `Kubectl Command Line Interface (kubectl.md)` – интерфейс командной строки для управления Kubernetes.
 
-<img src="./resources/basic_kub.png.png" width="600" height="400"/>
+<img src="./resources/basic_kub.png" width="600" height="400"/>
 
 [к оглавлению](#Kubernetes)
 
@@ -45,7 +45,7 @@
 Работающий кластер Kubernetes включает в себя агента, запущенного на нодах (kubelet), и компоненты мастера 
 (APIs, scheduler, etc) поверх решения с распределённым хранилищем.
 
-<img src="./resources/arch_kube.png" width="600" height="600"/>
+<img src="./resources/arch_kube.png" width="600" height="600"/>x
 
 Архитектура:
 

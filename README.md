@@ -620,7 +620,7 @@
 + [Что такое Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
 + [Базовая концепции внутреннего устройства Kubernetes?](java-interview/kuber.md#Что-такое-Kubernetes)
 + [Архитектура Kubernetes](java-interview/kuber.md#Архитектура-Kubernetes)
-+ [Кубер как поды создаются?](java-interview/kuber.md#Кубер-как-поды-создаются?)
++ [Кубер как поды создаются?](java-interview/kuber.md#Как-создать-поду?)
 + [Кубер сайт кард что это?](java-interview/kuber.md#Кубер-сайт-кард-что-это?)
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)

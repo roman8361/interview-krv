@@ -532,6 +532,7 @@
 + [Какие вы знаете различные scope у Spring _Bean?_](java-interview/spring.md#Какие-вы-знаете-различные-scope-у-Spring-Bean)
 + [Что такое _бин?_](java-interview/spring.md#Что-такое-бин)
 + [Что такое жизненный цикл Spring _Bean?_](java-interview/spring.md#Что-такое-жизненный-цикл-Spring-Bean)
++ [Что такое BeanPostProcessor?](java-interview/spring.md#Что-такое-BeanPostProcessor)
 + [Каким образом можно управлять транзакциями в _Spring?_](java-interview/spring.md#Каким-образом-можно-управлять-транзакциями-в-Spring)
 + [Какая разница между аннотациями @Component, @Repository и @Service в _Spring?_](java-interview/spring.md#Какая-разница-между-аннотациями-Component-Repository-и-Service-в-Spring)
 + [Чем отличается Bean от _Component?_](java-interview/spring.md#Чем-отличается-Bean-от-Component)
@@ -547,6 +548,17 @@
 
 
 [к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
+### Реактивность
++ [Реактивное программирование суть](java-interview/reactive.md#Реактивное-программирование-суть)
++ [Основные виды потерь на блокирующем типе программирования](java-interview/reactive.md#Основные-виды-потерь-на-блокирующем-типе-программирования)
++ [Понятие backpressure(обратное давление). Что оно дает.](java-interview/reactive.md#Понятие-backpressure-обратное-давление-Что-оно-дает)
++ [При каком количестве запросов и нагрузке имеет реактивно построенное приложение начинает выигровать у приложения с блокироющим типом запросов](java-interview/reactive.md#При-каком-количестве-запросов-и-нагрузке-имеет-реактивно)
++ [Основные библиотеки  ](java-interview/reactive.md#Основные-библиотеки)
+
+
+[к оглавлению](#Вопросы-для-собеседования-на-java-developer)
+
 
 ### Микросервисы
 + [Что характеризует МС](java-interview/ms.md#Что-характеризует-МС)

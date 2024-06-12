@@ -21,6 +21,8 @@
 + [Определение Контроллера](spring.md#определение-контроллера)
 + [@RestController vs @Controller](spring.md#RestController-vs-Controller)
 + [Spring Boot стартеры](spring.md#spring-boot-стартеры)
++ [Feign client](spring.md#feign-client )
++ [MapStruct](spring.md#mapStruct )
 
 ## Суть паттерна DI IOC
 IoC - аутсорсинг созадния и управления объектами. Т.е. передача программистом прав на создание
@@ -679,5 +681,114 @@ Spring Boot. Скорее, сторонний стартер обычно нач
 | spring-boot-starter-oauth2-client	| Starter для использования возможностей Spring Security OAuth2/OpenID Connect клиента |
 | spring-boot-starter-web	| Starter для создания web, включая RESTful, приложений, используя Spring MVC. Использует Tomcat как встроенный контейнер по умолчанию |
 
+
+[к оглавлению](#Spring)
+## Feign client
+_Feign_ - это декларативный HTTP-клиент, который интегрируется непосредственно с библиотекой Spring, предназначенный для 
+облегчения создания HTTP API клиентов. Он предлагает более удобный и чистый способ работы с удаленными HTTP-сервисами 
+по сравнению с использованием более низкоуровневых библиотек, таких как HttpClient.
+
+Вот как Feign облегчает работу:
+
+1. Декларативные интерфейсы: Feign позволяет определять интерфейсы для взаимодействия с удаленными API, используя аннотации 
+Spring. Это позволяет вам сосредоточиться на бизнес-логике вашего приложения, а не на деталях взаимодействия с HTTP.
+
+2. Интеграция с Ribbon: Feign интегрируется с Ribbon, балансировщиком нагрузки от Netflix, что позволяет легко настраивать
+и использовать клиентские стороны для выполнения запросов к различным экземплярам сервисов.
+
+3. Интеграция с Eureka: Feign также интегрируется с Eureka, сервисом реестра от Netflix, который облегчает обнаружение и 
+связывание с удаленными службами
+
+```java
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@FeignClient(name = "example", url = "https://api.example.com")
+public interface ExampleClient {
+    @GetMapping("/resource")
+    String getResource();
+}
+```
+
+ChatGPT
+Feign предоставляет различные способы обработки ошибок, возникающих во время выполнения HTTP-запросов. Вот несколько подходов:
+
+1. Использование классов-оберток для ошибок: Вы можете создать класс-обертку для ошибок, которые могут возникнуть при
+вызове удаленного сервиса, и возвращать эту обертку из ваших методов Feign. Это позволяет вам более детально описывать 
+типы ошибок и обрабатывать их соответствующим образом в вашем коде.
+
+```java
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+public class RemoteServiceException extends RuntimeException {
+    public RemoteServiceException(String message) {
+        super(message);
+    }
+}
+```
+
+2. Использование аннотации @ErrorDecoder: Feign позволяет вам определять пользовательские декодеры ошибок с помощью аннотации
+@ErrorDecoder. Вы можете создать класс, реализующий интерфейс ErrorDecoder, чтобы настроить, какие исключения выбрасываются 
+при различных статусах ответа сервера.
+
+```java
+import feign.Response;
+import feign.codec.ErrorDecoder;
+
+public class CustomErrorDecoder implements ErrorDecoder {
+    @Override
+    public Exception decode(String methodKey, Response response) {
+        if (response.status() == 404) {
+            return new ResourceNotFoundException("Resource not found");
+        }
+        return new Exception("Generic error occurred");
+    }
+}
+
+```
+
+```java
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.FeignClientConfiguration;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import feign.codec.ErrorDecoder;
+
+@Configuration
+public class FeignConfig {
+    @Bean
+    public ErrorDecoder errorDecoder() {
+        return new CustomErrorDecoder();
+    }
+}
+
+@FeignClient(name = "example", url = "https://api.example.com", configuration = FeignConfig.class)
+public interface ExampleClient {
+    // Methods
+}
+
+```
+[к оглавлению](#Spring)
+
+## MapStruct
+
+ChatGPT
+MapStruct - это фреймворк для преобразования объектов в Java. Он позволяет автоматически генерировать код преобразования
+между Java объектами без необходимости явного написания этого кода. Это особенно полезно в приложениях, где часто требуется
+преобразование между объектами различных слоев, например, между сущностями базы данных и DTO (Data Transfer Object).
+
+Вот основные преимущества MapStruct:
+
+1. Простота использования: MapStruct использует аннотации Java для указания преобразований между объектами, что делает 
+его простым в использовании и понимании.
+
+2. Высокая производительность: Генерируемый MapStruct код выполняется намного быстрее, чем рефлексивные преобразования, 
+поскольку он напрямую работает с полями объектов.
+
+3. Контроль над преобразованиями: MapStruct позволяет настраивать преобразования, указывая свойства объектов, которые 
+нужно игнорировать, а также применяя пользовательские методы для сложных преобразований.
+
+4. Гибкость: MapStruct поддерживает различные сценарии преобразования, включая один-к-одному, один-ко-многим и многие-к-одному отображения.
 
 [к оглавлению](#Spring)

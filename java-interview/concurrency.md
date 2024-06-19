@@ -412,89 +412,75 @@ __Зелёные (легковесные) потоки__(green threads) - пот
 [к оглавлению](#Многопоточность)
 
 ## Каким образом можно создать поток?
-+ Создать потомка класса `Thread` и переопределить его метод `run()`;
-+ Создать объект класса `Thread`, передав ему в конструкторе экземпляр класса, реализующего интерфейс `Runnable`. Эти интерфейс содержит метод `run()`, который будет выполняться в новом потоке. Поток закончит выполнение, когда завершится его метод `run()`.
-+ Вызвать метод `submit()` у экземпляра класса реализующего интерфейс `ExecutorService`, передав ему в качестве параметра экземпляр класса реализующего интерфейс `Runnable` или `Callable` (содержит метод `call()`, в котором описывается логика выполнения).
+Шаг 1: Создание класса, реализующего Runnable
+
 ```java
-public class Ex01 {
-
-  public static void main(String[] args) {
-    MyThread01 myThread01 = new MyThread01(); // extends class Thread 
-    Thread thread2 = new Thread(new MyThread02()); // implements Runnable
-    
-    myThread01.start();
-    myThread02.start();
-
-    new Thread(new Runnable() {  // создание потока внутри метода
-      @Override
-      public void run() {
-        System.out.println("Iha");
-      }
-    }).start();
-
-    new Thread(() -> System.out.println("trololo")).start(); // создание потока с использованием Лямбда
-  }
-
-}
-
-class MyThread01 extends Thread{
-  public void run(){
-    for (int i = 0; i <= 1000; i++) {
-      System.out.println(i);
-    }
-  }
-}
-
-class MyThread02 implements Runnable {
-
-  @Override
-  public void run() {
-    for (int i = 1000; i > 0; i--) {
-      System.out.println(i);
-    }
-  }
-}
-```
-```java
-/**
- * ThreadPool ExecutorService
- * ThreadPool - это множество потоков, каждый из которых предназначен для выполнения той или иной задачи.
- * ThreadPool удобноее всего работать посредоством ExecutorService
- * <p>
- * Метод execute передаёт наше задание (task) в thread pool, где оно выполняется одним из потоков.
- * После выполнения метода .shutdown() ExecutorService понимает, что новых заданий больше не будет и выполнив
- * последнее задание прекращает работу.
- */
-
-public class Ex14 {
-
-    public static void main(String[] args) throws InterruptedException {
-        ExecutorService executorService = Executors.newFixedThreadPool(5); // создаст ThreadPool с 5 потоками.
-//        ExecutorService executorService = Executors.newSingleThreadExecutor(); // создаст ThreadPool с 1 потокам.
-        for (int i = 0; i < 10; i++) {
-            executorService.execute(new RunnableImpl());
-        }
-        executorService.shutdown(); // shutdown понимает, что новых заданий больше не будет и выполнив
-// последнее задание прекращает работу.
-        executorService.awaitTermination(5, TimeUnit.SECONDS); // подобен join метод маин будет ждать пока не
-        // отработает executorService или пройдёт 5 сек
-        System.out.println("Main end");
-    }
-
-}
-
-class RunnableImpl implements Runnable {
-
-    @Override
-    @SneakyThrows
+public class MyRunnable implements Runnable {
     public void run() {
-        System.out.println(Thread.currentThread().getName() + " поток начал работу!");
-        Thread.sleep(4000);
-        System.out.println(Thread.currentThread().getName() + " поток закончил работу!");
+        // Код, который будет выполняться в потоке
+        System.out.println("Поток выполняется");
     }
+}
 
+public class Main {
+    public static void main(String[] args) {
+        MyRunnable myRunnable = new MyRunnable(); // Создание экземпляра Runnable
+        Thread thread = new Thread(myRunnable); // Создание потока, передача Runnable в конструктор
+        thread.start(); // Запуск потока
+    }
 }
 ```
+
+Наследование от класса Thread
+
+```java
+public class MyThread extends Thread {
+    public void run() {
+        // Код, который будет выполняться в потоке
+        System.out.println("Поток выполняется");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread(); // Создание экземпляра потока
+        myThread.start(); // Запуск потока
+    }
+}
+```
+
+Анонимный класс Thread
+```java
+public class Main {
+    public static void main(String[] args) {
+        Thread thread = new Thread() {
+            public void run() {
+                // Код, который будет выполняться в потоке
+                System.out.println("Поток выполняется");
+            }
+        };
+        thread.start(); // Запуск потока
+    }
+}
+
+```
+
+Использование лямбда-выражения (начиная с Java 8)
+С Java 8 можно использовать лямбда-выражения для реализации интерфейса Runnable.
+```java
+public class Main {
+    public static void main(String[] args) {
+        Runnable runnable = () -> {
+            // Код, который будет выполняться в потоке
+            System.out.println("Поток выполняется");
+        };
+
+        Thread thread = new Thread(runnable); // Создание потока с использованием лямбда-выражения
+        thread.start(); // Запуск потока
+    }
+}
+```
+
 
 [к оглавлению](#Многопоточность)
 

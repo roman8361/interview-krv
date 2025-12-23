@@ -244,7 +244,7 @@ Tomcat / Jetty / Netty встроены в приложение.
 - `уменьшает dependency hell`
 - `упрощает обновления`
 
-###Когда выбирать Spring Boot
+### Когда выбирать Spring Boot
 
 Выбирай **Spring Boot почти всегда**, если ты:
 

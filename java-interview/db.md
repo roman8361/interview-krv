@@ -187,6 +187,7 @@ CREATE INDEX idx_hash ON users USING HASH (email);
 ✅ полнотекстовый поиск
 
 Примеры
+```sql
 -- JSONB
 CREATE INDEX idx_json ON events USING GIN (payload);
 
@@ -195,7 +196,7 @@ CREATE INDEX idx_tags ON posts USING GIN (tags);
 
 -- full-text
 CREATE INDEX idx_fts ON docs USING GIN (to_tsvector('russian', text));
-
+```
 
 📌 Один из самых мощных и часто используемых индексов в Postgres.
 
@@ -207,9 +208,10 @@ CREATE INDEX idx_fts ON docs USING GIN (to_tsvector('russian', text));
 ✅ диапазоны (range types)
 ✅ триграммы (pg_trgm)
 
+```sql
 CREATE INDEX idx_geo ON places USING GIST (location);
 CREATE INDEX idx_range ON bookings USING GIST (period);
-
+```
 5️⃣ SP-GiST
 
 Вариант GiST для разреженных структур.
@@ -221,7 +223,9 @@ CREATE INDEX idx_range ON bookings USING GIST (period);
 ✅ префиксные деревья
 ✅ некоторые гео- и строковые структуры
 
+```sql
 CREATE INDEX idx_ip ON logs USING SPGIST (ip_address);
+```
 
 6️⃣ BRIN (Block Range Index) ⭐
 Когда использовать
@@ -242,9 +246,9 @@ CREATE INDEX idx_ip ON logs USING SPGIST (ip_address);
 Минус:
 
 менее точный, чем B-tree
-
+```sql
 CREATE INDEX idx_brin ON events USING BRIN (created_at);
-
+```
 
 📌 Отличен для логов, событий, time-series.
 

@@ -13,6 +13,7 @@
 + [Какая разница между аннотациями @Component, @Repository и @Service в _Spring?_](spring.md#Какая-разница-между-аннотациями-Component-Repository-и-Service-в-Spring)
 + [Чем отличается Bean от _Component?_](spring.md#Чем-отличается-Bean-от-Component)
 + [В чём состоит различие между Spring и Spring _Boot?_](spring.md#В-чём-состоит-различие-между-Spring-и-Spring-Boot)
++ [Ключевые различия между Spring и Spring Boot Spring vs Spring Boot](Ключевые-различия-между-Spring-и-Spring-Boot-Spring-vs-Spring-Boot)
 + [@Transactional](spring.md#Transactional)
 + [Разница между JDBC, JPA, Hibernate, Spring Data Jpa](spring.md#JDBC-JPA-Hibernate-Spring-Data-Jpa)
 + [JPA зачем надо Fetch](spring.md#JPA-зачем-надо-Fetch)
@@ -195,6 +196,8 @@ __Spring Boot__ – это один из многочисленных проек
 Это избавляет программиста не только от написания длинных конфигурационных файлов (особенно в XML),
 но и от необходимости настраивать различные компоненты для совместной работы. Что позволяет 
 сосредоточиться на написании прикладного кода.
+
+[к оглавлению](#Spring)
 
 ## Ключевые различия между Spring и Spring Boot Spring vs Spring Boot
 

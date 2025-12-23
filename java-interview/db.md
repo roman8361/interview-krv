@@ -156,10 +156,11 @@ CREATE  INDEX superheroes_name_idx ON superheroes(name)
 ✅ ORDER BY
 ✅ LIKE 'prefix%'
 
+```sql
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_orders_created ON orders(created_at);
 CREATE INDEX idx_orders_tenant_created ON orders(tenant_id, created_at);
-
+```
 📌 Если не знаешь, что выбрать — выбирай B-tree.
 
 2️⃣ Hash
